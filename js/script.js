@@ -141,7 +141,8 @@ form.addEventListener('submit', (e) =>{
     let validEmail = emailHelperFunc();
     let validCC = cardHelperFunc();
     let validZipcode = zipHelperFunc()
-    if(validName && validEmail && validCC && validZipcode){
+    let validCvv = cvvHelperFunc()
+    if(validName && validEmail && validCC && validZipcode && validCvv){
         //form submitted
     } else {
         e.preventDefault();
@@ -199,6 +200,17 @@ console.log(zipCodeFieldValue, zipCodeResults, 'zipresults')
     if(zipCodeResults){
         return true;
     } else{
+        return false; 
+    }
+}
+
+function cvvHelperFunc(){
+    let cvvValue = cvv.value;
+    let cvvResults = /^(\d{3})$/.test(cvvValue);
+    console.log(cvvValue, cvvResults, 'cvv');
+    if(cvvResults){
+        return true;
+    } else {
         return false; 
     }
 }
