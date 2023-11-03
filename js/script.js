@@ -64,3 +64,24 @@ design.addEventListener('change', (e) =>{
         }
     }
 })
+
+//register for activities section 
+let registerFieldset = document.getElementById('activities');
+console.log(registerFieldset)
+let activitiesCost = document.getElementById('activities-cost');
+console.log(activitiesCost);
+let totalCost = 0;
+
+registerFieldset.addEventListener('change', (e) => {
+    let dataCost = e.target.getAttribute(['data-cost']);
+    console.log(dataCost);
+    console.log(typeof dataCost);
+    +dataCost;
+    if(e.target.checked === true){
+        totalCost += +dataCost;
+        activitiesCost.innerHTML = totalCost;
+        console.log(totalCost);
+        console.log(activitiesCost);
+    }
+})
+
