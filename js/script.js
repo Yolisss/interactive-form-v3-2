@@ -122,3 +122,18 @@ selectPayment.addEventListener('change', (e) =>{
         bitcoin.hidden = false;
     }
 })
+
+//form validation 
+let email = document.getElementById('email');
+let ccInfo = document.getElementById('cc-num');
+let zipCode = document.getElementById('zip');
+let cvv = document.getElementById('cvv');
+let form = document.querySelector('form');
+
+form.addEventListener('submit', (e) =>{
+    e.preventDefault();
+    let nameFieldValue = name.value;
+    let nameResults =  /[a-z]+/.test(nameFieldValue);
+    console.log(nameFieldValue);
+
+})
