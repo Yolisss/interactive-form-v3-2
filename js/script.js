@@ -85,3 +85,40 @@ registerFieldset.addEventListener('change', (e) => {
     }
 })
 
+//payment info 
+
+let selectPayment = document.getElementById('payment');
+console.log(typeof selectPayment);
+
+let creditcard = document.getElementById('credit-card');
+
+let paypal = document.getElementById('paypal');
+
+let bitcoin = document.getElementById('bitcoin');
+
+//i originally though style.display. why hidden?
+ paypal.hidden = true;
+ bitcoin.hidden = true;
+
+//NEED CLARIFCATION. HOW IS IT AN OBJ AND HOW WERE WE SUPPOSED TO KNOW 
+//WHAT TO PUT IN OUR ATTRIBUTE METHOD 
+selectPayment.children[1].setAttribute("selected", true);
+
+selectPayment.addEventListener('change', (e) =>{
+    console.log(e);
+    //why are we writing cc in a string?
+    if(e.target.value === "creditcard"){
+        creditcard.hidden = false; 
+        paypal.hidden = true;
+        bitcoin.hidden = true;
+        console.log(e.target.value)
+    } else if(e.target.value === "paypal"){
+        creditcard.hidden = true; 
+        paypal.hidden = false;
+        bitcoin.hidden = true;
+    } else if(e.target.value === "bitcoin") {
+        creditcard.hidden = true; 
+        paypal.hidden = true;
+        bitcoin.hidden = false;
+    }
+})
