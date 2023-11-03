@@ -1,7 +1,7 @@
 
 //grabbing user input for name
-let name = document.getElementById('name');
-name.focus();
+let nameField = document.getElementById('name');
+nameField.focus();
 
 //grabbing select elem for job roles 
 //parent elem for all option elems
@@ -50,8 +50,9 @@ design.addEventListener('change', (e) =>{
         let eValue = e.target.value;
 
          //going through each options data theme attribute 
-        let dataThemeAttrib = colorOptions[i].getAttribute(["data-theme"]);
-        console.log(dataThemeAttrib);
+        let dataThemeAttrib = colorOptions[i].getAttribute("data-theme");
+
+        console.log(dataThemeAttrib, 'brack');
 
         //if JS Puns = JS Puns
         if(eValue === dataThemeAttrib){
@@ -102,12 +103,12 @@ let bitcoin = document.getElementById('bitcoin');
 
 //NEED CLARIFCATION. HOW IS IT AN OBJ AND HOW WERE WE SUPPOSED TO KNOW 
 //WHAT TO PUT IN OUR ATTRIBUTE METHOD 
-selectPayment.children[1].setAttribute("selected", true);
+selectPayment.children[1].setAttribute("selected", '');
 
 selectPayment.addEventListener('change', (e) =>{
     console.log(e);
     //why are we writing cc in a string?
-    if(e.target.value === "creditcard"){
+    if(e.target.value === "credit-card"){
         creditcard.hidden = false; 
         paypal.hidden = true;
         bitcoin.hidden = true;
@@ -125,15 +126,79 @@ selectPayment.addEventListener('change', (e) =>{
 
 //form validation 
 let email = document.getElementById('email');
+//console.log(email,'email');
 let ccInfo = document.getElementById('cc-num');
+//console.log(ccInfo, 'cc');
 let zipCode = document.getElementById('zip');
+//console.log(zipCode, 'zip');
 let cvv = document.getElementById('cvv');
+//console.log(cvv,'cvv')
 let form = document.querySelector('form');
+//console.log(form, 'form')
 
 form.addEventListener('submit', (e) =>{
-    e.preventDefault();
-    let nameFieldValue = name.value;
-    let nameResults =  /[a-z]+/.test(nameFieldValue);
-    console.log(nameFieldValue);
+    let validName = nameHelperFunc();
+    let validEmail = emailHelperFunc();
+    let validCC = cardHelperFunc();
+    let validZipcode = zipHelperFunc()
+    if(validName && validEmail && validCC && validZipcode){
+        //form submitted
+    } else {
+        e.preventDefault();
+    }
 
 })
+
+function nameHelperFunc() {
+    let nameFieldValue = nameField.value;
+    let nameResults =  /^[a-z]+$/i.test(nameFieldValue);
+    if(nameResults){
+        return true;
+    } else {
+        return false; 
+    }
+} 
+
+function emailHelperFunc(){
+    let emailFieldValue = email.value; 
+    let emailResults = /[^@]+@/i.test(emailFieldValue);
+console.log(emailFieldValue, emailResults)
+    if(emailResults){
+        return true;
+    } else{
+        return false; 
+    }
+}
+
+// function regActivitesHelpFunc(){
+//     let regActivitiesFieldValue = registerFieldset.value; 
+//     let regActivitiesResults = /[^@]+@/i.test(emailFieldValue);
+// console.log(emailFieldValue, emailResults)
+//     if(emailResults){
+//         return true;
+//     } else{
+//         return false; 
+//     }
+// }
+
+function cardHelperFunc(){
+    let ccFieldValue = ccInfo.value; 
+    let ccResults = /^(\d{4})(\d{4})(\d{4})(\d{4})$/i.test(ccFieldValue);
+console.log(ccFieldValue, ccResults, 'cardresults')
+    if(ccResults){
+        return true;
+    } else{
+        return false; 
+    }
+}
+
+function zipHelperFunc(){
+    let zipCodeFieldValue = zipCode.value; 
+    let zipCodeResults = /^(\d{5})$/.test(zipCodeFieldValue);
+console.log(zipCodeFieldValue, zipCodeResults, 'zipresults')
+    if(zipCodeResults){
+        return true;
+    } else{
+        return false; 
+    }
+}
