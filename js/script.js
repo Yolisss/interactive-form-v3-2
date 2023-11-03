@@ -79,7 +79,7 @@ registerFieldset.addEventListener('change', (e) => {
     +dataCost;
     if(e.target.checked === true){
         totalCost += +dataCost;
-        activitiesCost.innerHTML = totalCost;
+        activitiesCost.innerHTML = `Total: $${totalCost}`;
         console.log(totalCost);
         console.log(activitiesCost);
     }
