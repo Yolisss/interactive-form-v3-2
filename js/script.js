@@ -134,7 +134,7 @@ let zipCode = document.getElementById('zip');
 let cvv = document.getElementById('cvv');
 //console.log(cvv,'cvv')
 let form = document.querySelector('form');
-//console.log(form, 'form')
+console.log(form, 'form')
 
 form.addEventListener('submit', (e) =>{
     let validName = nameHelperFunc();
@@ -218,6 +218,13 @@ function cvvHelperFunc(){
     }
 }
 
-function formHelper(){
-
+const checkboxes = document.querySelectorAll('#activities-box input');
+for (let i = 0; i < checkboxes.length; i++) {
+    const input = checkboxes[i];
+    input.addEventListener('focus', (event) => {
+        event.target.parentElement.classList.add('focus');
+    });
+    input.addEventListener('blur', (event) => {
+        event.target.parentElement.classList.remove('focus');
+    });
 }
