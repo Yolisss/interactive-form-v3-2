@@ -142,7 +142,8 @@ form.addEventListener('submit', (e) =>{
     let validCC = cardHelperFunc();
     let validZipcode = zipHelperFunc()
     let validCvv = cvvHelperFunc()
-    if(validName && validEmail && validCC && validZipcode && validCvv){
+    let validRegActiv = regActivitesHelpFunc()
+    if(validName && validEmail && validCC && validZipcode && validCvv && validRegActiv){
         //form submitted
     } else {
         e.preventDefault();
@@ -171,16 +172,18 @@ console.log(emailFieldValue, emailResults)
     }
 }
 
-// function regActivitesHelpFunc(){
-//     let regActivitiesFieldValue = registerFieldset.value; 
-//     let regActivitiesResults = /[^@]+@/i.test(emailFieldValue);
-// console.log(emailFieldValue, emailResults)
-//     if(emailResults){
-//         return true;
-//     } else{
-//         return false; 
-//     }
-// }
+function regActivitesHelpFunc(){ 
+   let childActivities = registerFieldset.querySelectorAll('[type="checkbox"]');
+   console.log(childActivities, 'child')
+   let checkedOff = false;
+   for(let i = 0; i < childActivities.length; i++){
+    if(childActivities[i].checked){
+        checkedOff = true;
+    } 
+   }
+   console.log(checkedOff)
+   return checkedOff;
+}
 
 function cardHelperFunc(){
     let ccFieldValue = ccInfo.value; 
@@ -213,4 +216,8 @@ function cvvHelperFunc(){
     } else {
         return false; 
     }
+}
+
+function formHelper(){
+
 }
