@@ -97,17 +97,15 @@ let paypal = document.getElementById('paypal');
 
 let bitcoin = document.getElementById('bitcoin');
 
-//i originally though style.display. why hidden?
  paypal.hidden = true;
  bitcoin.hidden = true;
 
-//NEED CLARIFCATION. HOW IS IT AN OBJ AND HOW WERE WE SUPPOSED TO KNOW 
-//WHAT TO PUT IN OUR ATTRIBUTE METHOD 
+
 selectPayment.children[1].setAttribute("selected", '');
 
 selectPayment.addEventListener('change', (e) =>{
     console.log(e);
-    //why are we writing cc in a string?
+    
     if(e.target.value === "credit-card"){
         creditcard.hidden = false; 
         paypal.hidden = true;
@@ -126,15 +124,15 @@ selectPayment.addEventListener('change', (e) =>{
 
 //form validation 
 let email = document.getElementById('email');
-//console.log(email,'email');
+
 let ccInfo = document.getElementById('cc-num');
-//console.log(ccInfo, 'cc');
+
 let zipCode = document.getElementById('zip');
-//console.log(zipCode, 'zip');
+
 let cvv = document.getElementById('cvv');
-//console.log(cvv,'cvv')
+
 let form = document.querySelector('form');
-console.log(form, 'form')
+
 
 form.addEventListener('submit', (e) =>{
     let validName = nameHelperFunc();
@@ -218,6 +216,7 @@ function cvvHelperFunc(){
     }
 }
 
+//blur focus class attrib
 const checkboxes = document.querySelectorAll('#activities-box input');
 for (let i = 0; i < checkboxes.length; i++) {
     const input = checkboxes[i];
